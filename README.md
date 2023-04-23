@@ -17,3 +17,7 @@ sh -c will run shell command
 `docker-compose up`
 # To clear containers
 `docker-compose down`
+
+
+# create a django project 'core' in the current directory
+docker-compose run --rm app sh -c "python manage.py startapp core"

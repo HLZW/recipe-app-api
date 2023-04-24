@@ -19,14 +19,14 @@ class Command(BaseCommand):
         self.stdout.write('Waiting for database...')
 
         # Initialize a variable to indicate whether the database is ready.
-        db_ready = False
+        db_up = False
 
         # Continue to check the database until it is ready.
-        while not db_ready:
+        while db_up is False:
             try:
                 # Attempt to check the database.
                 self.check(databases=['default'])
-                db_ready = True
+                db_up = True
             except (Psycopg2OpError, OperationalError):
                 self.stdout.write('Database unavailable, waiting 1 second...')
                 # Wait 1 second.

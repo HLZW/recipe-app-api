@@ -28,10 +28,8 @@ class Command(BaseCommand):
                 self.check(databases=['default'])
                 db_ready = True
             except (Psycopg2OpError, OperationalError):
-                # If the database is not ready, display a message and wait 1 second.
                 self.stdout.write('Database unavailable, waiting 1 second...')
                 # Wait 1 second.
                 time.sleep(1)
         # Display a message indicating that the database is ready.
         self.stdout.write(self.style.SUCCESS('Database available!'))
-

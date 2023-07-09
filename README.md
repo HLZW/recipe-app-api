@@ -21,3 +21,13 @@ sh -c will run shell command
 
 # create a django project 'core' in the current directory
 docker-compose run --rm app sh -c "python manage.py startapp core"
+
+# make migrations after create User model and update settings.py
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+# refresh database after making new migrations
+`docker compose down`
+`docker volume rm recipe-app-api_dev-db-data`
+
+# apply migrations
+`docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"`
